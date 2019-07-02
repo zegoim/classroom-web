@@ -1,0 +1,28 @@
+
+
+```mermaid
+graph TB
+  ZegoSDK((Zego LiveRoom SDK))
+  WhiteSDK((Netless SDK))
+
+  ZegoSDK --> initSDK
+  initSDK --> loginRoom
+  loginRoom --> playStream
+  loginRoom --> startPreview
+  startPreview --> startPublish
+  startPublish --> startRecord
+  startRecord --> endRecord
+  endRecord --> replay
+
+  loginRoom --- joinRoom
+
+  WhiteSDK --> createRoom
+  createRoom --> joinRoom
+  WhiteSDK --> joinRoom
+  joinRoom --> replay
+```
+
+## 四、Demo 演示
+ <video style="width: 100%;" controls="controls" autoplay="autoplay">
+ <source src="./assets/demo.mp4" type="video/mp4" />
+ </video>

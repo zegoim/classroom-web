@@ -1,0 +1,36 @@
+{
+    "gitbook": "3.2.3",
+    "root": ".",
+    "links" : {
+        "sidebar" : {
+            "myxvisual" : "https://github.com/myxvisual"
+        }
+    },
+    "styles": {
+        "website": "styles/website.css",
+        "ebook": "styles/ebook.css",
+        "pdf": "styles/pdf.css",
+        "mobi": "styles/mobi.css",
+        "epub": "styles/epub.css"
+    },
+    "plugins": [
+        "prism",
+        "mermaid-gb3",
+        "expandable-chapters",
+        "image-captions",
+        "checkbox",
+        "-highlight",
+        "-sharing"
+    ],
+    "pluginsConfig": {
+        "expandable-chapters":{},
+        "image-captions": {
+            "caption": "_CAPTION_"
+        },
+        "prism": {
+          "css": [
+            "prism-themes/themes/prism-xonokai.css"
+          ]
+        }
+    }
+}

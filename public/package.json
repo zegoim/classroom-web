@@ -1,0 +1,14 @@
+{
+  "name": "ClassRoom",
+  "version": "1.0.1",
+  "description": "classroom",
+  "author": {
+    "name": "Zego App Inc.",
+    "url": "https://www.zego.im/"
+  },
+  "main": "main.js",
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "request": "^2.88.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.scss": "sass",
+        "*.ejs": "ejs",
+        "*.css": "css",
+        "*.svg": "xml",
+        "ostream": "cpp"
+    }
+}

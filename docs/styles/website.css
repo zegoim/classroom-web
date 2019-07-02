@@ -1,0 +1,82 @@
+/* .book-header .btn {
+    color: #008cff !important;
+}
+
+.book-summary {
+    background: #292929 !important;
+}
+
+.book-summary ul.summary li a, .book-summary ul.summary li span {
+    color: #008cff !important;
+}
+
+#book-search-input {
+    background: #565656 !important;
+}
+
+.book-body {
+    background: #323232 !important;
+}
+
+* {
+    color: #fff !important;
+} */
+
+
+.book .book-summary .exc-trigger {
+    position: absolute;
+    right: 0 !important;
+    left: inherit !important;
+    top: 12px;
+
+    width: 40px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-summary ul.summary li a, .book-summary ul.summary li span {
+    padding-right: 0 !important;
+}
+
+.book .book-summary ul.summary li a, .book .book-summary ul.summary li span {
+    padding-left: 0px !important;
+}
+
+.summary > li {
+    padding-left: 20px;
+}
+
+.book .book-summary .exc-trigger {
+    color: #949494;
+}
+
+figcaption {
+    color: #999;
+    text-decoration: underline;
+    font-weight: 100;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+*::-webkit-scrollbar:vertical {
+    width: 6px;
+}
+
+*::-webkit-scrollbar:horizontal {
+    height: 6px
+}
+
+*::-webkit-scrollbar {
+    -webkit-appearance: none
+}
+pre.mermaid.language- {
+    background: #f7f7f7;
+}

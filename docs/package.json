@@ -1,0 +1,24 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gitbook build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gitbook": "^3.2.3",
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-checkbox": "^0.1.3",
+    "gitbook-plugin-expandable-chapters": "^0.2.0",
+    "gitbook-plugin-highlight": "^2.0.3",
+    "gitbook-plugin-image-captions": "^3.1.0",
+    "gitbook-plugin-mermaid-gb3": "^2.1.0",
+    "gitbook-plugin-prism": "^2.4.0",
+    "gitbook-plugin-prism-themes": "0.0.2"
+  }
+}

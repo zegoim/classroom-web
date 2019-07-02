@@ -1,0 +1,50 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "module": "commonjs",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "target": "es5",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "declaration": false,
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "noImplicitAny": false,
+    "outDir": "./build",
+    "checkJs": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "noLib": false,
+    "lib": ["dom", "es5", "es2015", "es2016.array.include"],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "*" : ["node_modules/white-web-sdk/types/*"],
+      "@root": ["./src"],
+      "@root/*": ["./src/*"]
+    }
+  },
+  "filesGlob": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "files": [
+    "node_modules/react-uwp/index.d.ts"
+  ],
+  "include": [
+    "*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "__mocks__/**/*.ts",
+    "__mocks__/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "./__mocks__"
+  ]
+}

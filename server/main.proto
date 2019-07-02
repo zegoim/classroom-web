@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message WhiteScreen {
+    required string uuid = 1;
+    required string roomToken = 2;
+}
+
+message Classroom {
+    required string roomId = 1;
+    optional string roomName = 2;
+    optional string createAt = 3; // ISO Date
+    optional WhiteScreen whiteScreen = 4;
+}
