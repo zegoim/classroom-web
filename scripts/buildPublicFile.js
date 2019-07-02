@@ -148,9 +148,3 @@ fs.writeFileSync(
     }
   )
 )
-
-const extract = require('extract-zip')
-const isWin32 = process.platform === 'win32'
-if ((isWin32 || process.platform === 'darwin') && toElectron) {
-  extract(path.join(__dirname, isWin32 ? '../sdk/WindowsSDK.zip' : '../sdk/MacSDK.zip'), { dir: path.join(__dirname, '../build/zegoliveroom') }, err => err && console.error(err))
-}
