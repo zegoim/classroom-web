@@ -68,7 +68,8 @@ export class Room extends React.Component<RoomProps, RoomState> {
     const res = await liveRoom.loginRoom({ roomId: search.roomId });
     await api.updateRoom({ roomId: liveRoom.roomId, teacherId: liveRoom.userId });
     await liveRoom.startPreview({ viewEl: this.localView.viewEl as HTMLCanvasElement });
-    const streamId = `${hash.MD5(liveRoom.roomId).toString()}-${liveRoom.userId}`;
+    // 流名字必须带 teacher 前缀，录制视频需要
+    const streamId = `teacher-${hash.MD5(liveRoom.roomId).toString()}-${liveRoom.userId}`;
     liveRoom.publishStream(streamId);
     const recordRes = await api.startRecord({ appId: liveRoom.appId, roomId: liveRoom.roomId, signature: liveRoom.signKey.join(",") });
     if (recordRes.status === 200) {
