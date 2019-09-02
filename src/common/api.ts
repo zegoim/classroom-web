@@ -1,4 +1,4 @@
-const apiUrl = "http://118.25.189.55:8092/class-room/rooms";
+const apiUrl = "https://test.zegonetwork.com:599/class-room/rooms";
 const headers = { "content-type": "application/json" };
 
 export interface Room {
