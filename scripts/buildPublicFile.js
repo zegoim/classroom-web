@@ -6,7 +6,7 @@ const { green } = require('chalk')
 const { join, relative, extname } = path
 
 const { execSync } = require('child_process')
-const version = execSync('git describe --abbrev=0 --tags').toString().trim() || 'v0.0.1'
+const version = require('./gitVersion')
 const versionNumber = version.slice(1)
 
 const __DEV__ = process.env.NODE_ENV === 'development'
