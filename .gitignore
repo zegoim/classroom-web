@@ -5,6 +5,7 @@
 # Xcode
 #
 build/
+public/package-lock.json
 !build/.gitkeep
 *.pbxuser
 !default.pbxuser
