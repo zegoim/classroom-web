@@ -1,14 +1,15 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import { stringify } from "query-string";
-import { Room, RoomPhase, RoomWhiteboard, WhiteWebSdk } from "white-react-sdk";
+import { WhiteWebSdk } from "white-react-sdk";
 import Icon from "react-uwp/Icon";
 import Tooltip from "react-uwp/Tooltip";
 import ColorPicker from "react-uwp/ColorPicker";
 import Slider from "react-uwp/Slider";
 import * as color from "tinycolor2";
+import { hereWhiteToken } from "../../config";
 
-export { Room, RoomPhase, RoomWhiteboard, WhiteWebSdk };
+export { WhiteWebSdk };
 
 export interface DataProps {
   uuid?: string;
@@ -20,7 +21,6 @@ export interface DataProps {
   onReplay?: () => void;
 }
 
-import "white-web-sdk/style/index.css";
 import { getSearchQuery } from "@root/common/getSearchQuery";
 
 export interface HereWhiteProps extends DataProps, React.HTMLAttributes<HTMLDivElement> {}
@@ -36,7 +36,7 @@ export interface HereWhiteState {
   uuid?: string;
 }
 export type Appliance  = "selector" | "pencil" | "eraser" | "text" | "rectangle" | "ellipse";
-export const sdkToken = "WHITEcGFydG5lcl9pZD1rU0pFaGk2U1JBdnlLVEtzNWE3OGV5amcwU2pKVDQ1QmllSUwmc2lnPWNjMDYzOTM4MjFhZDMxYjNkZWEwMzk3ODE2OGEyZmQ4MmI5YmMwMGM6YWRtaW5JZD0yMTgmcm9sZT1taW5pJmV4cGlyZV90aW1lPTE1ODk2Mzk2OTUmYWs9a1NKRWhpNlNSQXZ5S1RLczVhNzhleWpnMFNqSlQ0NUJpZUlMJmNyZWF0ZV90aW1lPTE1NTgwODI3NDMmbm9uY2U9MTU1ODA4Mjc0Mjg2NTAw";
+export { hereWhiteToken };
 const apiUrl = "https://cloudcapiv4.herewhite.com";
 const appliances = [
   { title: "选择", appliance: "selector", icon: "MultiSelectLegacyMirrored" },
@@ -91,7 +91,7 @@ export class HereWhite extends React.Component<HereWhiteProps, HereWhiteState> {
   createAndJoinRoom = async () => {
     clearTimeout(this.getHereWhiteTimer);
 
-    const url = `${apiUrl}/room?token=${sdkToken}`;
+    const url = `${apiUrl}/room?token=${hereWhiteToken}`;
     const requestInit = {
       method: "POST",
       headers: {
@@ -100,12 +100,15 @@ export class HereWhite extends React.Component<HereWhiteProps, HereWhiteState> {
       body: JSON.stringify({
         name: "Test Room",
         limit: 100,
-        mode: "historied"
+        mode: "persistent"
       })
     };
 
     fetch(url, requestInit)
       .then((response) => {
+        if (response.status !== 200) {
+            throw new Error(`create room failed with status code ${response.status} : ${response.statusText}`);
+        }
         return response.json();
       })
       .then(async (json: any) => {
@@ -125,7 +128,7 @@ export class HereWhite extends React.Component<HereWhiteProps, HereWhiteState> {
   joinRoom = async (param: { uuid: string; roomToken?: string; }) => {
     let roomToken = param.roomToken;
     if (!roomToken) {
-      const query = stringify({ uuid: param.uuid || getSearchQuery().uuid, token: sdkToken });
+      const query = stringify({ uuid: param.uuid || getSearchQuery().uuid, token: hereWhiteToken });
       const url = `${apiUrl}/room/join?${query}`;
       const response = await fetch(url, {
           method: "POST",
@@ -141,11 +144,19 @@ export class HereWhite extends React.Component<HereWhiteProps, HereWhiteState> {
     }
 
     const whiteWebSdk: WhiteWebSdk = new WhiteWebSdk();
+    console.log("whiteWebSdk join room.");
+    console.log({
+      uuid: param.uuid,
+      roomToken
+    });
     return whiteWebSdk.joinRoom({
       uuid: param.uuid,
       roomToken
-    })
-    .then((room) => {
+    }, {
+      onPhaseChanged: () => {},
+      onRoomStateChanged: () => {}
+    }).then((room) => {
+      console.log("room is :", room);
       this.setState({ room });
       const { strokeColor, selectorRadius, strokeWidth, textSize } = this.state;
       const rgb = color(strokeColor).toRgb();
@@ -155,7 +166,10 @@ export class HereWhite extends React.Component<HereWhiteProps, HereWhiteState> {
         textSize
       });
       room.bindHtmlElement(this.whiteEl);
+
       return room;
+    }).catch(e => {
+      console.error(e);
     });
   }
 
@@ -172,7 +186,7 @@ export class HereWhite extends React.Component<HereWhiteProps, HereWhiteState> {
   }
 
   closeRoom = () => {
-    return fetch(`https://cloudcapiv4.herewhite.com//room/close?token=${sdkToken}`, {
+    return fetch(`https://cloudcapiv4.herewhite.com//room/close?token=${hereWhiteToken}`, {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ uuid: this.state.room.uuid })
     });

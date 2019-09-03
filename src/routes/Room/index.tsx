@@ -71,17 +71,17 @@ export class Room extends React.Component<RoomProps, RoomState> {
     // 流名字必须带 teacher 前缀，录制视频需要
     const streamId = `teacher-${hash.MD5(liveRoom.roomId).toString()}-${liveRoom.userId}`;
     liveRoom.publishStream(streamId);
-    const recordRes = await api.startRecord({ appId: liveRoom.appId, roomId: liveRoom.roomId, signature: liveRoom.signKey.join(",") });
-    if (recordRes.status === 200) {
-      // this.time.start();
-      const data: any = await recordRes.json();
-      const timestamp = Number(new Date());
-      const serverTimestamp = data.start_time * 1000;
-      console.error({ timestamp, serverTimestamp });
-      const replayUrl = api.recordUrl + data.url;
-      api.updateRoom({ roomId: liveRoom.roomId, replayUrl, createAt: serverTimestamp });
-      this.setState({ replayUrl, createAt: serverTimestamp });
-    }
+    // const recordRes = await api.startRecord({ appId: liveRoom.appId, roomId: liveRoom.roomId, signature: liveRoom.signKey.join(",") });
+    // if (recordRes.status === 200) {
+    //   // this.time.start();
+    //   const data: any = await recordRes.json();
+    //   const timestamp = Number(new Date());
+    //   const serverTimestamp = data.start_time * 1000;
+    //   console.error({ timestamp, serverTimestamp });
+    //   const replayUrl = api.recordUrl + data.url;
+    //   api.updateRoom({ roomId: liveRoom.roomId, replayUrl, createAt: serverTimestamp });
+    //   this.setState({ replayUrl, createAt: serverTimestamp });
+    // }
   }
 
   async componentWillUnmount() {
@@ -99,7 +99,7 @@ export class Room extends React.Component<RoomProps, RoomState> {
 
     liveRoom.stopPreview();
     liveRoom.logoutRoom();
-    const recordRes = await api.stopRecord({ appId: liveRoom.appId, roomId: liveRoom.roomId, signature: liveRoom.signKey.join(",") });
+    // const recordRes = await api.stopRecord({ appId: liveRoom.appId, roomId: liveRoom.roomId, signature: liveRoom.signKey.join(",") });
   }
 
   render() {
@@ -143,8 +143,6 @@ export class Room extends React.Component<RoomProps, RoomState> {
           roomToken={search.roomToken}
           onCreateRoom={async (whiteScreen) => {
             this.time.start();
-            console.error(Number(new Date()));
-            console.error(whiteScreen);
             this.state.uuid = whiteScreen.uuid;
             await api.updateRoom({
               roomId: search.roomId,

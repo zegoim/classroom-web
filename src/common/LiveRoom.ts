@@ -88,7 +88,7 @@ export class LiveRoom {
         loginTokenUrl: this.loginTokenUrl,
         logUrl: "",
         remoteLogLevel: 0,
-        logLevel: 0
+        logLevel: 3
       };
 
       this.zegoClient.onStreamUpdated = (type?: number, newStreamList?: any[]) => {

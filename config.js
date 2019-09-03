@@ -14,6 +14,7 @@ module.exports = {
     // replay signKey in here.
     signKey: []
   },
+  hereWhiteToken: '',
   webpackManifestName: 'webpack-manifest',
   webpackDllManifestName: 'webpack-dll-manifest',
   toElectron: process.env.toElectron === 'true'

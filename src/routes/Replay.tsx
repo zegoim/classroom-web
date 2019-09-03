@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as PropTypes from "prop-types";
 import * as ReactRouter from "react-router";
-import { sdkToken, WhiteWebSdk } from "@root/components/HereWhite";
+import { WhiteWebSdk } from "@root/components/HereWhite";
 import { getSearchQuery } from "@root/common/getSearchQuery";
 import Time from "@root/components/Time";
 import { __IS_ELECTRON__ } from "@root/common/electron";
