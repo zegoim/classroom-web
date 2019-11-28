@@ -7,6 +7,7 @@
     "start": "npm-run-all --parallel public:watch server:dev",
     "build": "rm -rf build && npm-run-all build:webpack public:build",
     "nextVersion": "node ./scripts/nextVersion",
+    "electron:dev": "npm run public:watch && electron ./build",
     "deploy:web": "npm run build && cross-env toElectron=false node ./scripts/publish",
     "build:prev": "npm-run-all build:webpack public:build server:prod",
     "build:webpack": "cross-env NODE_ENV=production webpack --progress --colors --display-error-details --hide-modules -p",
