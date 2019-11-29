@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "webpack": "webpack -v",
+    "remote-server": "node server/index.js",
     "start": "npm-run-all --parallel public:watch server:dev",
     "build": "rm -rf build && npm-run-all build:webpack public:build",
     "nextVersion": "node ./scripts/nextVersion",
