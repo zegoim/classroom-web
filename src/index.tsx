@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { __IS_ELECTRON__ } from "@root/common/electron";
-window.menubarHeight = __IS_ELECTRON__ ? 40 : 0;
+window.menubarHeight = "require" in window ? 40 : 0;
 
 if (process.env.NODE_ENV !== "production") {
   // const { whyDidYouUpdate } = require("why-did-you-update");

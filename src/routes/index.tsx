@@ -40,11 +40,11 @@ export default () => (
     style={{ minHeight: `calc(100vh - ${window.menubarHeight}px)` }}
     theme={theme}
   >
-  {__IS_ELECTRON__
+  {"require" in window
     ? <TitleBar
       controlledMaximized={true}
       titleBarHeight={window.menubarHeight}
-      title="教师端"
+      title="教师端-白板"
       icon={<p style={{ marginRight: 4 }}>{animalEmojis[Math.floor(Math.random() * animalEmojis.length)]}</p>}
     >
       {contentEl}

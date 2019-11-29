@@ -43,7 +43,7 @@ export class Room extends React.Component<RoomProps, RoomState> {
   firstRemoteStreamId: string;
   async componentDidMount() {
     search = getSearchQuery();
-    if (__IS_ELECTRON__) {
+    if ("require" in window) {
       window.onbeforeunload = e => {
         e.preventDefault();
         window._openDialog({

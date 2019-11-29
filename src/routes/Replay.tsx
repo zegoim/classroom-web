@@ -29,7 +29,7 @@ export class Replay extends React.Component<ReplayProps, ReplayState> {
   };
   rootEl: HTMLDivElement;
   componentDidMount() {
-    if (__IS_ELECTRON__) {
+    if ("require" in window) {
       window.onbeforeunload = e => {
         e.preventDefault();
         window._openDialog({

@@ -116,10 +116,12 @@ export class HereWhite extends React.Component<HereWhiteProps, HereWhiteState> {
         const { uuid } = room;
         const { onCreateRoom, onJoinRoom } = this.props;
         if (onCreateRoom) {
+          console.log("is create room");
           onCreateRoom({ uuid, roomToken });
         }
         let roomRes = await this.joinRoom({ uuid, roomToken });
         if (onJoinRoom) {
+          console.log("is join room");
           onJoinRoom({ room: roomRes });
         }
       });
@@ -128,6 +130,7 @@ export class HereWhite extends React.Component<HereWhiteProps, HereWhiteState> {
   joinRoom = async (param: { uuid: string; roomToken?: string; }) => {
     let roomToken = param.roomToken;
     if (!roomToken) {
+      console.log("not found roomToken");
       const query = stringify({ uuid: param.uuid || getSearchQuery().uuid, token: hereWhiteToken });
       const url = `${apiUrl}/room/join?${query}`;
       const response = await fetch(url, {
@@ -152,9 +155,6 @@ export class HereWhite extends React.Component<HereWhiteProps, HereWhiteState> {
     return whiteWebSdk.joinRoom({
       uuid: param.uuid,
       roomToken
-    }, {
-      onPhaseChanged: () => {},
-      onRoomStateChanged: () => {}
     }).then((room) => {
       console.log("room is :", room);
       this.setState({ room });
